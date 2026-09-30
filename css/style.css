@@ -749,20 +749,28 @@ html.lenis, html.lenis body { height: auto; }
 .art-coco__tail { transform-box: fill-box; transform-origin: 0% 100%; animation: tail 2.6s ease-in-out infinite; }
 @keyframes tail { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-9deg); } }
 
-/* desktop: pinned horizontal walk past the booths */
+/* desktop: pinned horizontal walk past the booths.
+   Cards go wide (drawing | text) so they stay shorter than the screen;
+   main.js falls back to the stacked list if a card still wouldn't fit. */
 @media (min-width: 980px) {
   .js.can-pin .booths { padding: 0; height: var(--booths-h, 300vh); }
-  .js.can-pin .booths__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
+  .js.can-pin .booths__pin {
+    position: sticky; top: 0; height: 100vh; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 64px 0 18px;   /* keep cards clear of the floating nav */
+  }
   .js.can-pin .booths__track {
     flex-direction: row; align-items: center; gap: clamp(40px, 4vw, 70px);
-    max-width: none; margin: 0; padding: 40px 8vw 0;
+    max-width: none; margin: 0; padding: 0 8vw;
     will-change: transform;
   }
   .js.can-pin .booths__intro { flex: 0 0 min(420px, 30vw); text-align: left; }
   .js.can-pin .booths__cue { display: block; }
-  .js.can-pin .booth { flex: 0 0 min(500px, 36vw); max-height: 86vh; }
-  .js.can-pin .booth__art { height: clamp(160px, 24vh, 240px); }
-  .js.can-pin .booth--more { flex-basis: min(340px, 26vw); }
+  .js.can-pin .booth { flex: 0 0 min(900px, 74vw); flex-direction: row; }
+  .js.can-pin .booth__art { flex: 0 0 36%; height: auto; margin: 12px 0 12px 12px; }
+  .js.can-pin .booth__art > svg { width: 90%; height: auto; }
+  .js.can-pin .booth__body { padding: 20px 26px 22px; }
+  .js.can-pin .booth--more { flex: 0 0 min(340px, 26vw); flex-direction: column; }
 }
 
 /* ---------- CONTACT: envelope ---------- */

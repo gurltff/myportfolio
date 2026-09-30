@@ -347,6 +347,17 @@
       return;
     }
     track.style.transform = 'none';
+    // if any booth is taller than the space under the nav, its buttons would be cut off:
+    // fall back to the normal stacked list instead
+    const room = vh - 64 - 18 - 16;
+    const tallest = Math.max(...$$('.booth', track).map((c) => c.offsetHeight));
+    if (tallest > room) {
+      pinOn = false;
+      root.classList.remove('can-pin');
+      booths.style.removeProperty('--booths-h');
+      track.style.transform = '';
+      return;
+    }
     travel = Math.max(0, track.scrollWidth - window.innerWidth);
     booths.style.setProperty('--booths-h', (travel + vh) + 'px');
   };
