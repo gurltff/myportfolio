@@ -496,7 +496,7 @@ html.lenis, html.lenis body { height: auto; }
   .collage {
     display: grid; max-width: 1200px; gap: 0;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: repeat(21, 50px);
+    grid-template-rows: repeat(21, 50px) auto; /* last row grows if the journal note runs long */
   }
   .collage__ribbons { display: block; grid-column: 1 / -1; grid-row: 1 / -1; width: 100%; height: 100%; pointer-events: none; }
   .c-handles { grid-column: 1 / 6; grid-row: 1 / 3; }
@@ -504,8 +504,8 @@ html.lenis, html.lenis body { height: auto; }
   .c-skills { grid-column: 7 / 13; grid-row: 1 / 9; align-self: start; }
   .c-name { grid-column: 3 / 10; grid-row: 7 / 14; align-self: stretch; }
   .c-seal { grid-column: 10 / 13; grid-row: 9 / 13; align-self: center; justify-self: center; margin: 0; }
-  .c-edu { grid-column: 6 / 10; grid-row: 13 / 16; align-self: center; margin: 0; }
-  .c-journal { grid-column: 1 / 6; grid-row: 13 / 22; align-self: start; margin: 20px 0 0 28px; }
+  .c-edu { grid-column: 6 / 10; grid-row: 14 / 17; align-self: start; margin: -26px 0 0; }
+  .c-journal { grid-column: 1 / 6; grid-row: 13 / 23; align-self: start; margin: 20px 0 0 28px; }
   .c-explore { grid-column: 10 / 13; grid-row: 13 / 17; width: auto; align-self: center; }
   .c-city { grid-column: 11 / 13; grid-row: 17 / 19; align-self: center; margin: 0; }
   .c-qr { grid-column: 7 / 13; grid-row: 19 / 22; align-self: end; }
@@ -544,7 +544,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .stampcard__grid {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 36px) clamp(14px, 2.4vw, 30px);
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(26px, 3.4vw, 44px) clamp(14px, 3vw, 40px);
 }
 @media (max-width: 760px) {
   .stampcard__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -576,6 +576,8 @@ html.lenis, html.lenis body { height: auto; }
 .stamp:nth-child(2) { --sr: 7deg; }
 .stamp:nth-child(3) { --sr: -4deg; }
 .stamp:nth-child(4) { --sr: 10deg; }
+.stamp:nth-child(5) { --sr: -12deg; }
+.stamp:nth-child(6) { --sr: 5deg; }
 @keyframes slam {
   0% { opacity: 0; scale: 1.9; rotate: -28deg; }
   45% { opacity: 1; scale: .88; rotate: var(--sr, -8deg); }
@@ -705,6 +707,7 @@ html.lenis, html.lenis body { height: auto; }
 .booth__stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
 .booth__stack span { padding: 0 10px 2px; font-size: 14px; border: 2px solid rgb(91 44 23 / .5); border-radius: 8px; background: rgb(255 255 255 / .6); }
 .booth__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 18px; }
+.booth__note { display: inline-block; padding: 6px 16px 8px; font-size: 17px; color: var(--ink-2); border: 2.5px dashed var(--ink-3); border-radius: 12px 14px 10px 16px; rotate: -1deg; }
 
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
@@ -735,6 +738,15 @@ html.lenis, html.lenis body { height: auto; }
 .booth:hover .art-chip__lens { transform: translate(-46px, -40px); }
 .art-cal .tick { stroke-dasharray: 40; stroke-dashoffset: 40; transition: stroke-dashoffset .5s var(--ease-out); }
 .booth.is-in .art-cal .tick, .no-js .art-cal .tick { stroke-dashoffset: 0; }
+.art-flow .tick { stroke-dasharray: 30; stroke-dashoffset: 30; transition: stroke-dashoffset .5s var(--ease-out) .2s; }
+.art-flow .tick + path + rect + .tick { transition-delay: .45s; }
+.booth.is-in .art-flow .tick { stroke-dashoffset: 0; }
+.art-flow__key { transform-box: fill-box; transform-origin: 30% 70%; animation: bob 4s ease-in-out infinite; }
+.art-bus__body { animation: rumble 1.6s ease-in-out infinite; }
+@keyframes rumble { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
+.art-bus__seat { animation: seat 2.4s steps(1) infinite; }
+@keyframes seat { 0%, 100% { fill: transparent; } 50% { fill: #5b2c17; } }
+.art-bus__wave { animation: twinkle 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
 .art-cal .tick:nth-child(2) { transition-delay: .1s; } .art-cal .tick:nth-child(3) { transition-delay: .2s; }
 .art-cal .tick:nth-child(4) { transition-delay: .3s; } .art-cal .tick:nth-child(6) { transition-delay: .4s; }
 .art-cal .tick:nth-child(7) { transition-delay: .5s; } .art-cal .tick:nth-child(8) { transition-delay: .6s; }

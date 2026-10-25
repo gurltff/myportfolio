@@ -221,12 +221,15 @@
      --------------------------------------------------------- */
   const facts = [
     'i study physics at DU and computer applications at Manipal, at the same time ✦',
-    'i ranked in the top 1 percentile at the Tata Bharat YUVAi Hackathon',
-    'my SIH team is called CoolKats 🐾 and we won the internal round!',
+    'i came 11th out of 2,000 in the Non-Engineering AI Track at the Tata Bharat YUVAi Hackathon',
+    'i founded Nexora, a coding + hackathon community with six departments',
+    'my SIH team is called CoolKats 🐾 and we won 1st place in the internal round!',
     'this summer i learnt high-vacuum thermal evaporation for nanomaterials research',
+    'i got a Scholar Badge in classes 9, 10 and 12',
+    'i also design posters for Nepenthe, the animal welfare society at my college',
     "Coco's Corner is a comfort app made in memory of Coco, a chubby black cat",
     'one of my projects lets you inspect space-grade chips with hand gestures',
-    "every star on this page is drawn in code. try clicking anywhere!"
+    'every star on this page is drawn in code. try clicking anywhere!'
   ];
   const raffle = $('.c-raffle');
   const note = $('#raffle-note');
